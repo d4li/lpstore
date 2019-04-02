@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 // import Link from 'next/link';
 
 import {
-  _SearchHeaderContainer
+  _SearchHeaderContainer,
+  _InputText
 } from './styles';
 
 class SearchHeader extends Component{
@@ -41,7 +42,7 @@ class SearchHeader extends Component{
         {/* <Link href={{pathname: '/search', query: {q: searchValue}}}>
           <a title="Buscar"><i className="icon"></i></a>
         </Link> */}
-        <input
+        <_InputText
           name="search"
           type="text"
           onKeyUp={this._handleSearchKeyup}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
-export const _NavHeaderContainer = styled.header`
+export const _NavHeaderContainer = styled.div`
   display: flex;
   flex-grow: 2;
   align-items: center;
@@ -20,6 +20,7 @@ export const _NavHeaderList = styled.ul`
 
 export const _NavHeaderItem = styled.li`
   margin: 0 20px;
+  text-transform: lowercase;
 `;
 
 export const _NavHeaderLink = styled(Link)`

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import LoadingLayer from './components/LoadingLayer';
 import Header from './components/Header';
+import SlideHome from './components/SlideHome';
 import Content from './components/Content';
 
 import { ThemeService, ThemeProvider, ThemeProvider_Consumer } from './';
@@ -14,25 +15,26 @@ class DefaultTheme extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      scrolling: false,
       isShowingLoginForm: false
     };
 
     this._scroll = () => {
-      let _app = document.querySelector('.app');
+      console.log('# _scroll', window.scrollY);
       let lastScollValue = window.scrollY;
-      _app && lastScollValue > 50
-        ? _app.classList.add('scrolled')
-        : _app.classList.remove('scrolled');
+      lastScollValue > 80
+        ? this.setState({ scrolling: true })
+        : this.setState({ scrolling: false });
     }//_scroll
   }
 
-  // async componentDidMount() {
+  async componentDidMount() {
   //   const { restrict } = this.props;
   //   try {
   //     const PlayerAuth = restrict ? await ThemeService._getAuth() : null;
   //     window.scrollTo(0,0);
   //     this._scroll();
-  //     window.onscroll = () => this._scroll();
+      window.onscroll = () => this._scroll();
   //     if (location.pathname == '/login') {
   //       if (!Router.router.query.backTo)
   //         return Router.push({pathname: '/minha-conta/perfil'});
@@ -41,7 +43,7 @@ class DefaultTheme extends Component {
   //   } catch (e) {
   //     return Router.push({pathname: '/notAuthorized', query: {backTo: location.pathname}});
   //   }
-  // }
+  }
 
   _toggleLoginform = (isShowing = false) => {
     this.setState({
@@ -50,10 +52,10 @@ class DefaultTheme extends Component {
   }
   render() {
     const { homepage, token } = this.props;
-    const { logged, isShowingLoginForm } = this.state;
+    const { scrolling, isShowingLoginForm } = this.state;
 
     return (
-      <_ThemeContainer className="app">
+      <_ThemeContainer className="app" scrolling={scrolling}>
         <ThemeProvider>
           <ThemeProvider_Consumer>
             {({ pageLoad }) => (
@@ -65,7 +67,9 @@ class DefaultTheme extends Component {
                 /> */}
                 <Header
                   title="Vitrine - LP"
+                  scrolling={scrolling}
                 />
+                <SlideHome />
                 <Content>
                   {!pageLoad ? this.props.children : <LoadingLayer />}
                 </Content>

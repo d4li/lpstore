@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-export const _SearchHeaderContainer = styled.header`
+export const _SearchHeaderContainer = styled.div`
   display: flex;
-  width: 200px;
+  width: 300px;
+`;
+
+export const _InputText = styled.input`
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 10px 20px;
 `;

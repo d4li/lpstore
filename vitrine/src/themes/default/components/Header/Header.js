@@ -11,8 +11,8 @@ import {
   _HeaderContainer
 } from './styles';
 
-const Header = ({ title }) => (
-  <_HeaderContainer left>
+const Header = ({ title, scrolling }) => (
+  <_HeaderContainer left scrolling={scrolling}>
     <Logo />
     <NavHeader />
     <SearchHeader />
